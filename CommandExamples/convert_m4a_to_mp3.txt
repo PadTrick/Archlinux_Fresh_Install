@@ -1,0 +1,1 @@
+ffmpeg -i my.m4a -acodec mp3 -ac 2 -ab 192k my.mp3

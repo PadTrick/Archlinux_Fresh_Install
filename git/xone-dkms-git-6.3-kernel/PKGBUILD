@@ -1,0 +1,47 @@
+# Maintainer: edward-p <edward@edward-p.xyz>
+# Contributor: Michał Kopeć <michal@nozomi.space>
+
+_pkgname=xone
+pkgname=xone-dkms-git
+pkgver=0.3.r1.g2467407
+pkgrel=1
+pkgdesc='Modern Linux driver for Xbox One and Xbox Series X|S controllers'
+arch=('x86_64')
+url='https://github.com/medusalix/xone'
+license=('GPL2')
+depends=('dkms')
+makedepends=('git')
+conflicts=('xone-dkms')
+provides=('xone-dkms')
+source=("git+https://github.com/medusalix/xone.git"
+        "Fix-build-on-6.3.patch::https://github.com/medusalix/xone/pull/21.patch")
+sha256sums=('SKIP'
+            '33ecc09ba6696e889ba9b20821b42adbb63bb70f8007c65ddb00aaa69bed63d0')
+install=xone-dkms.install
+
+pkgver() {
+  cd "$srcdir/$_pkgname"
+  git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+prepare() {
+  cd "${srcdir}/${_pkgname}"
+  patch -Np1 -i ../Fix-build-on-6.3.patch
+}
+
+package() {
+  cd "${srcdir}/${_pkgname}"
+
+  find . -type f \( -name 'dkms.conf' -o -name '*.c' \) -exec sed -i "s/#VERSION#/$pkgver/" {} +
+  echo 'ccflags-y += -DDEBUG' >> "Kbuild"
+
+  echo "* Copying module into /usr/src..."
+  install -dm755 "${pkgdir}/usr/src/${_pkgname}-${pkgver}"
+  cp -r ${srcdir}/$_pkgname/{bus,driver,transport,Kbuild,dkms.conf} "${pkgdir}/usr/src/${_pkgname}-${pkgver}"
+
+  echo "* Blacklisting xpad module..."
+  install -D -m 644 install/modprobe.conf "${pkgdir}/etc/modprobe.d/xone-blacklist.conf"
+
+  install -Dm 755 install/firmware.sh "${pkgdir}/usr/lib/xone/firmware.sh"
+}
+
