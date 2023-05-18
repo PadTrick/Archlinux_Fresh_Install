@@ -10,7 +10,7 @@ sudo pacman -S archlinux-keyring
 
 
 
-Archinstall WLan Setup:
+Archinstall WiFi Setup:
 YOURDEVICE = your wifi device(example 'wlan0' for me)
 SSID = your wifi hotspot name at home/work
 PASSPHRASE = your wifi password
