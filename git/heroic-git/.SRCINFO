@@ -1,6 +1,6 @@
 pkgbase = heroic-games-launcher-git
 	pkgdesc = Native GOG and Epic Games launcher for Linux
-	pkgver = 2.8.0.r0.dd233a4f76089defbab6f4dca747e4feb1e698b8
+	pkgver = 2.8.0.r2.32253aa01159bef24211cf715111e25036f2a490
 	pkgrel = 1
 	url = https://heroicgameslauncher.com/
 	arch = x86_64
