@@ -13,6 +13,12 @@ echo "git clone lib32-nvidia-525xx-utils"
 git clone https://aur.archlinux.org/lib32-nvidia-525xx-utils.git
 echo "git clone nvidia-525xx-settings.git"
 git clone https://aur.archlinux.org/nvidia-525xx-settings.git
+echo "git clone https://aur.archlinux.org/ast-fw.git"
+git clone https://aur.archlinux.org/ast-fw.git
+echo "git clone https://aur.archlinux.org/aic94xx-firmware.git"
+git clone https://aur.archlinux.org/aic94xx-firmware.git
+echo "git clone https://aur.archlinux.org/wd719x-firmware.git"
+git clone https://aur.archlinux.org/wd719x-firmware.git
 clear
 echo "Installing Chaotix AUR packages"
 sudo pacman -S downgrade protontricks protonup-qt xone-dongle-firmware yay visual-studio-code-bin
@@ -21,6 +27,12 @@ echo "Installing AUR and Custom packages"
 cd xone-dkms-git && makepkg -si
 cd $HOME/git
 cd ttf-kochi-substitute && makepkg -si
+cd $HOME/git
+cd ast-fw && makepkg -si
+cd $HOME/git
+cd aic94xx-firmware && makepkg -si
+cd $HOME/git
+cd wd719x-firmware && makepkg -si
 cd $HOME/git
 cd nvidia-525xx-utils && makepkg -si
 cd $HOME/git
