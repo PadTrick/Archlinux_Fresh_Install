@@ -20,8 +20,8 @@ sudo pacman -S ntfs-3g dkms linux-lts-headers linux-zen-headers cabextract  curl
 #Screenshot utility for KDE
 sudo pacman -S spectacle
 
-#Tool to config a gaming mouse, piper doesnt save DPI settings on my logitech G203 mouse, i change DPI with solaar
-sudo pacman -S piper
+#Tool to config a gaming mouse, piper doesnt save DPI settings on my logitech G203 mouse but has nice features, give it a try if it works, i use solaar because i can save my dpi settings with it
+sudo pacman -S solaar
 
 #Pulseaudio (dont install this, if u use pipewire)
 sudo pacman -S paprefs
@@ -53,6 +53,9 @@ sudo pacman -S barrier
 
 #Packages for Diablo 1 DevilutionX Port
 sudo pacman -S fmt lib32-sdl2 lib32-sdl2_image lib32-sdl2_mixer lib32-sdl2_ttf sdl2 sdl2_image sdl2_mixer sdl2_ttf
+
+#utility to manage cpu frequency etc.
+sudo cpupower cpupower-gui
 
 Installs from Website:
 https://discord.com

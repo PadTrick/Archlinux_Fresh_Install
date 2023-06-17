@@ -1,13 +1,14 @@
 Fixing Archinstall error on updating keyring:
+sudo pacman -S archlinux-keyring
+
+another solution maybe
+
 killall gpg-agent
 rm -rf /etc/pacman.d/gnupg
 pacman-key --init
 pacman-key --populate archlinux
 
-another solution maybe
-
-sudo pacman -S archlinux-keyring
-
+========================================
 
 
 Archinstall WiFi Setup:

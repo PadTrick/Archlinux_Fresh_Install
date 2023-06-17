@@ -1,4 +1,4 @@
-Launch Commands:
+Wine/Proton Launch Commands:
 DXVK_ENABLE_NVAPI=1 PROTON_ENABLE_NVAPI=1 PROTON_HIDE_NVIDIA_GPU=0 gamemoderun %command%
 
 Ubisoft launcher Game shortcuts
