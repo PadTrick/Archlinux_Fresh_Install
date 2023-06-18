@@ -277,7 +277,7 @@ if [ "$INSTALL_GAMESCOPE" == "Yes" ]; then
     echo "Gamescope installed !!!"
 fi
 
-if [ "$NVIDIA_DRIVERS" == "Pipewire" ]; then
+if [ "$NVIDIA_DRIVERS" == "Yes" ]; then
     echo "Installing Nvidia GPU Driver 525.xx"
     echo "creating dir $HOME/git and cloning all packages into it"
     mkdir $HOME/git
