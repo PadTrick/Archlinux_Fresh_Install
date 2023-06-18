@@ -179,8 +179,8 @@ opt8=("Continue")
 select opt8 in "${opt8[@]}"
 do
     case $opt8 in
-        "Yes")
-            echo "you choose Yes"
+        "Continue")
+            echo "you choose Continue"
             break
             ;;
         *) echo "invalid option $REPLY";;
