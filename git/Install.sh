@@ -194,9 +194,13 @@ if [ "$ADD_CHAOTIX" == "Yes" ]; then
     sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
     sudo pacman-key --lsign-key 3056513887B78AEB
     sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
-    sudo echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" >> /etc/pacman.conf
+    echo ' ' | sudo tee -a /etc/pacman.conf >/dev/null
+    echo '[chaotic-aur]' | sudo tee -a /etc/pacman.conf >/dev/null
+    echo 'Include = /etc/pacman.d/chaotic-mirrorlist' | sudo tee -a /etc/pacman.conf >/dev/null
+    echo ' ' | sudo tee -a /etc/pacman.conf >/dev/null
 fi
 
+sudo pacman -Syyu
 sudo pacman -S downgrade protontricks protonup-qt yay
 
 if [ "$INSTALL_VSC" == "Yes" ]; then
