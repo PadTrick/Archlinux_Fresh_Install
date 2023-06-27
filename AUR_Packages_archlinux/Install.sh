@@ -278,6 +278,28 @@ if [ "$INSTALL_GAMESCOPE" == "Yes" ]; then
 fi
 
 if [ "$NVIDIA_DRIVERS" == "Yes" ]; then
+    #Steam?
+    echo -e "Is Steam installed ?"
+    PS9='Select: '
+    opt9=("Yes" "No")
+    select opt9 in "${opt9[@]}"
+    do
+        case $opt9 in
+            "Yes")
+                echo "you choose Yes"
+                INSTALLED_STEAM="Yes"
+                sudo pacman -R steam vulkan-driver
+                break
+                ;;
+            "No")
+                echo "you choose No"
+                INSTALLED_STEAM="No"
+                break
+                ;;
+            *) echo "invalid option $REPLY";;
+        esac
+    done
+
     echo "Installing Nvidia GPU Driver 525.xx"
     echo "creating dir $HOME/git and cloning all packages into it"
     mkdir $HOME/git
@@ -295,7 +317,13 @@ if [ "$NVIDIA_DRIVERS" == "Yes" ]; then
     cd $HOME/git
     cd nvidia-525xx-settings && makepkg -si
     cd $HOME/git
-    echo "Nvidia GPU Driver installed, please reboot !!!"
+    echo "Nvidia GPU Driver installed !!!"
+fi
+
+if [ "INSTALLED_STEAM" == "Yes" ]; then
+    echo "Reinstalling Steam"
+    sudo pacman -S steam
+    echo "Steam reinstalled !!!"
 fi
 
 echo "Installation finished. Please reboot now !!!"

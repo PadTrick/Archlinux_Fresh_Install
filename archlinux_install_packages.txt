@@ -1,3 +1,4 @@
+#All Packages installed with the Scripts/Install_Packages_after_Frest_Install_archlinux.sh
 Installs from Arch Repo:
 
 #Install tools to check fastest Mirrors

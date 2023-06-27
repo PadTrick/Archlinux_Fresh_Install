@@ -180,6 +180,16 @@ sudo reflector --save /etc/pacman.d/mirrorlist --country France,Germany --protoc
 #Discover missing dependencies
 sudo pacman -S packagekit-qt5 flatpak fwupd
 
+if [ "$GPU_DRIVER" == "NVIDIA" ]; then
+    echo "Installing NVIDIA Drivers"
+    sudo pacman -S vulkan-icd-loader lib32-vulkan-icd-loader nvidia-utils lib32-nvidia-utils nvidia-settings lib32-opencl-nvidia opencl-nvidia
+fi
+
+if [ "$GPU_DRIVER" == "AMD" ]; then
+    echo "Installing AMD Drivers"
+    sudo pacman -S mesa lib32-mesa xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau lib32-opencl-mesa opencl-mesa
+fi
+
 #Some libs & tools which will be usefull for extracting several archive formats, installing packages from AUR or mounting NTFS drivers, screenshots etc
 sudo pacman -S ntfs-3g dkms linux-lts-headers linux-zen-headers cabextract  curl  glib2  gnome-desktop  gtk3  mesa-utils  unrar p7zip  psmisc  python-dbus  python-distro  python-evdev  python-gobject  python-lxml  python-pillow python-pip python-lxml git fuse2 gawk polkit-kde-agent jre17-openjdk pavucontrol
 
@@ -204,16 +214,6 @@ sudo pacman -S steam gamemode lib32-gamemode lutris
 
 #Packages for Diablo 1 DevilutionX Port
 sudo pacman -S fmt lib32-sdl2 lib32-sdl2_image lib32-sdl2_mixer lib32-sdl2_ttf sdl2 sdl2_image sdl2_mixer sdl2_ttf
-
-if [ "$GPU_DRIVER" == "NVIDIA" ]; then
-    echo "Installing NVIDIA Drivers"
-    sudo pacman -S vulkan-icd-loader lib32-vulkan-icd-loader nvidia-utils lib32-nvidia-utils nvidia-settings lib32-opencl-nvidia opencl-nvidia
-fi
-
-if [ "$GPU_DRIVER" == "AMD" ]; then
-    echo "Installing AMD Drivers"
-    sudo pacman -S mesa lib32-mesa xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau lib32-opencl-mesa opencl-mesa
-fi
 
 if [ "$MOUSE_DRIVER" == "Solaar" ]; then
     echo "Installing Solaar Drivers"
