@@ -322,7 +322,7 @@ fi
 
 if [ "INSTALLED_STEAM" == "Yes" ]; then
     echo "Reinstalling Steam"
-    sudo pacman -S steam
+    sudo pacman -S steam vulkan-driver
     echo "Steam reinstalled !!!"
 fi
 
