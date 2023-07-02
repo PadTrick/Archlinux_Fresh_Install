@@ -201,7 +201,6 @@ if [ "$ADD_CHAOTIX" == "Yes" ]; then
 fi
 
 sudo pacman -Syyu
-sudo pacman -S downgrade protontricks protonup-qt yay
 
 if [ "$INSTALL_VSC" == "Yes" ]; then
     echo "Installing Visual Studio Code"
@@ -288,7 +287,6 @@ if [ "$NVIDIA_DRIVERS" == "Yes" ]; then
             "Yes")
                 echo "you choose Yes"
                 INSTALLED_STEAM="Yes"
-                sudo pacman -R steam vulkan-driver
                 break
                 ;;
             "No")
@@ -300,6 +298,19 @@ if [ "$NVIDIA_DRIVERS" == "Yes" ]; then
         esac
     done
 
+    if [ "$INSTALLED_STEAM" == "Yes" ]; then
+        clear
+        echo "Uninstalling steam & protontricks-git"
+        echo "This is neccessary to install the NVIDIA Drivers."
+        echo "They will be reinstalled after the NVIDIA Drivers are installed !!!"
+        sudo pacman -R protontricks
+        sudo pacman -R protontricks-git
+        sudo pacman -R steam
+        echo "steam & protontricks-git uninstalled !!!"
+    fi
+
+    echo "Uninstalling old Nvidia drivers"
+    sudo pacman -R nvidia-dkms nvidia-settings nvidia-utils lib32-nvidia-utils lib32-opencl-nvidia opencl-nvidia libxnvctrl
     echo "Installing Nvidia GPU Driver 525.xx"
     echo "creating dir $HOME/git and cloning all packages into it"
     mkdir $HOME/git
@@ -320,10 +331,13 @@ if [ "$NVIDIA_DRIVERS" == "Yes" ]; then
     echo "Nvidia GPU Driver installed !!!"
 fi
 
-if [ "INSTALLED_STEAM" == "Yes" ]; then
-    echo "Reinstalling Steam"
-    sudo pacman -S steam vulkan-driver
-    echo "Steam reinstalled !!!"
+if [ "$INSTALLED_STEAM" == "Yes" ]; then
+    echo "Reinstalling steam & protontricks-git"
+    sudo pacman -S steam protontricks-git
+    echo "steam & protontricks-git reinstalled !!!"
 fi
+
+sudo pacman -Syyu
+sudo pacman -S downgrade protontricks-git protonup-qt yay
 
 echo "Installation finished. Please reboot now !!!"
