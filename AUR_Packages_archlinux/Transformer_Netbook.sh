@@ -16,7 +16,7 @@ echo "Installing AUR packages"
 echo "git clone kded-rotation-git"
 git clone https://aur.archlinux.org/corekeyboard.git
 echo "Installing kded-rotation-git"
-cd corekeyboard.git && makepkg -si
+cd corekeyboard && makepkg -si
 cd $HOME/git
 echo "corekeyboard.git installed !!!"
 
