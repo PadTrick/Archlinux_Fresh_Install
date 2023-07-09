@@ -207,7 +207,7 @@ sudo pacman -S ntfs-3g dkms linux-lts-headers linux-zen-headers cabextract  curl
 sudo pacman -S spectacle
 
 #utility to manage cpu frequency etc.
-sudo cpupower cpupower-gui
+sudo pacman -S cpupower cpupower-gui
 
 #media player
 sudo pacman -S vlc
