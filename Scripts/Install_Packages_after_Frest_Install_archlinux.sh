@@ -4,7 +4,7 @@ echo -e "Choose your packages to install \n"
 #GPU Drivers
 echo -e "Which GPU Drivers ?"
 PS1='Select: '
-opt1=("NVIDIA" "AMD")
+opt1=("NVIDIA" "AMD" "INTEL")
 select opt1 in "${opt1[@]}"
 do
     case $opt1 in
@@ -16,6 +16,11 @@ do
         "AMD")
             echo "you choose AMD"
             GPU_DRIVER="AMD"
+            break
+            ;;
+        "INTEL")
+            echo "you choose INTEL"
+            GPU_DRIVER="INTEL"
             break
             ;;
         *) echo "invalid option $REPLY";;
@@ -188,6 +193,11 @@ fi
 if [ "$GPU_DRIVER" == "AMD" ]; then
     echo "Installing AMD Drivers"
     sudo pacman -S mesa lib32-mesa xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau lib32-opencl-mesa opencl-mesa
+fi
+
+if [ "$GPU_DRIVER" == "INTEL" ]; then
+    echo "Installing INTEL Drivers"
+    sudo pacman -S mesa lib32-mesa xf86-video-intel vulkan-intel lib32-vulkan-intel
 fi
 
 #Some libs & tools which will be usefull for extracting several archive formats, installing packages from AUR or mounting NTFS drivers, screenshots etc
