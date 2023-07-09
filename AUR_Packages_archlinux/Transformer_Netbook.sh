@@ -6,7 +6,7 @@ mkdir $HOME/git
 cd $HOME/git
 echo "Installing AUR packages"
 echo "git clone kded-rotation-git"
-git https://aur.archlinux.org/kded-rotation-git.git
+git clone https://aur.archlinux.org/kded-rotation-git.git
 echo "Installing kded-rotation-git"
 cd kded-rotation-git && makepkg -si
 cd $HOME/git
@@ -14,7 +14,7 @@ echo "kded-rotation-git installed !!!"
 
 echo "Installing AUR packages"
 echo "git clone kded-rotation-git"
-git https://aur.archlinux.org/corekeyboard.git
+git clone https://aur.archlinux.org/corekeyboard.git
 echo "Installing kded-rotation-git"
 cd corekeyboard.git && makepkg -si
 cd $HOME/git
