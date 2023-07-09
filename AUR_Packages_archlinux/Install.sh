@@ -338,6 +338,6 @@ if [ "$INSTALLED_STEAM" == "Yes" ]; then
 fi
 
 sudo pacman -Syyu
-sudo pacman -S downgrade protontricks-git protonup-qt yay
+sudo pacman -S downgrade protontricks-git protonup-qt yay cpupower-gui
 
 echo "Installation finished. Please reboot now !!!"
